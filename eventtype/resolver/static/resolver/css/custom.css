@@ -1,0 +1,26 @@
+
+input[type=number] {-moz-appearance: textfield;}
+
+body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+
+#event_number_input_group{
+	max-width: 30em;
+	margin: auto;
+}
+
+#event_type_explained{
+	font-size: 1.5em;
+	margin: 5em 0;
+	align: left;
+}
+
+table td, table td * {
+    vertical-align: top;
+}
+
+td {
+	padding: 0.5em 1em;
+}

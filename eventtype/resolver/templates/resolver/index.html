@@ -1,0 +1,19 @@
+{% extends "resolver/base.html" %}
+
+{% block content %}
+        <h1>LHCb Event Type Resolver</h1>
+
+        <p class="lead">Enter a 8-digit event type number and have it explained to you!</p>
+
+        <form action="resolve/" >
+            <div class="input-group" id="event_number_input_group">
+                <span class="input-group-addon" id="basic-addon1">Event type: (Eight digits)</span>
+                <input type="text" class="form-control" pattern="[0-9]{8}" name="event_number_input">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Resolve it!</button>
+                </span>
+            </div>
+        </form>
+
+      
+{% endblock %}

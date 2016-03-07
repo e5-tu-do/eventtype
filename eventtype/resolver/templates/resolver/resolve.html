@@ -1,0 +1,42 @@
+{% extends "resolver/base.html" %}
+
+{% block content %}
+        <h1>LHCb Event Type Resolver</h1>
+
+        <table id="event_type_explained">
+            <tr>
+                <td>{{ g.flag}}</td>
+                <td>{{ g.meaning }}</td>
+            </tr>
+            <tr>
+                <td>{{ s.flag}}</td>
+                <td>{{ s.meaning }}</td>
+            </tr>
+            <tr>
+                <td>{{ d.flag}}</td>
+                <td>{{ d.meaning }}</td>
+            </tr>
+            <tr>
+                <td>{{ c.flag}}</td>
+                <td>{{ c.meaning }}</td>
+            </tr>
+            <tr>
+                <td>{{ t.flag}}</td>
+                <td>{{ t.meaning }}</td>
+            </tr>
+            <tr>
+                <td>{{ n.flag}}</td>
+                <td>{{ n.meaning }}</td>
+            </tr>
+            <tr>
+                <td>{{ x.flag}}</td>
+                <td>{{ x.meaning }}</td>
+            </tr>
+            <tr>
+                <td>{{ u.flag}}</td>
+                <td>{{ u.meaning }}</td>
+            </tr>
+        </table>
+
+      
+{% endblock %}
