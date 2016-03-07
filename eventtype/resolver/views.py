@@ -8,6 +8,9 @@ from django.http import HttpResponse
 def index(request):
     return render(request,"resolver/index.html")
 
+def about(request):
+    return render(request, "resolver/about.html")
+
 
 def resolve(request):
     event_number = request.GET["event_number_input"]

@@ -1,4 +1,4 @@
- 
+# -*- coding: utf-8 -*-
 
 def get_g_info(g_flag):
     g_dict = {}
@@ -19,7 +19,7 @@ def get_s_info(s_flag, g_flag):
     s_dict = {}
     if g_flag == 1 or g_flag ==2:
         s_dict[0] = { "meaning" : "a b(c)-hadron, amongst a list of more than one specified species, is required", "type" : "info"}
-        s_dict[1] = { "meaning" : "a B 0 (D − ) is required", "type" : "info"}
+        s_dict[1] = { "meaning" : u"a B 0 (D − ) is required", "type" : "info"}
         s_dict[2] = { "meaning" : "a B + (D 0 ) is required", "type" : "info"}
         s_dict[3] = { "meaning" : "a B s 0 (D s − ) is required", "type" : "info"}
         s_dict[4] = { "meaning" : "a B c + (J/ψ) is required", "type" : "info"}
