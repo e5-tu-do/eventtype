@@ -17,17 +17,29 @@ def get_g_info(g_flag):
 
 def get_s_info(s_flag, g_flag):
     s_dict = {}
-    if g_flag == 1 or g_flag ==2:
-        s_dict[0] = { "meaning" : "a b(c)-hadron, amongst a list of more than one specified species, is required", "type" : "info"}
-        s_dict[1] = { "meaning" : u"a B 0 (D − ) is required", "type" : "info"}
-        s_dict[2] = { "meaning" : "a B + (D 0 ) is required", "type" : "info"}
-        s_dict[3] = { "meaning" : "a B s 0 (D s − ) is required", "type" : "info"}
-        s_dict[4] = { "meaning" : "a B c + (J/ψ) is required", "type" : "info"}
-        s_dict[5] = { "meaning" : "a Λ b (Λ c ) is required", "type" : "info"}
-        s_dict[6] = { "meaning" : "a specific b(c)-baryon, other than Λ b (Λ c ), is required the extra flag specifies the type of baryon, see Table 12 and Table 13", "type" : "info"}
-        s_dict[7] = { "meaning" : "a b(c)-hadron resonance is required, the extra flag specifies the type of resonance", "type" : "info"}
-        s_dict[8] = { "meaning" : "a bb̄-meson (cc̄-meson other than J/ψ) is required, the extra flag specifies the type of resonance", "type" : "info"}
-        s_dict[9] = { "meaning" : "two or more b(c)-hadrons, amongst a list of specified combinations, are required", "type" : "info"}
+    if g_flag == 1:
+        s_dict[0] = { "meaning" : "a bhadron, amongst a list of more than one specified species, is required", "type" : "info"}
+        s_dict[1] = { "meaning" : "a $B^0$ is required", "type" : "info"}
+        s_dict[2] = { "meaning" : "a $B^+$ is required", "type" : "info"}
+        s_dict[3] = { "meaning" : "a $B_s^0$ is required", "type" : "info"}
+        s_dict[4] = { "meaning" : "a $B_c^+$ is required", "type" : "info"}
+        s_dict[5] = { "meaning" : "a $\Lambda_b$ is required", "type" : "info"}
+        s_dict[6] = { "meaning" : "a specific b-baryon, other than $\Lambda_b$, is required the extra flag specifies the type of baryon", "type" : "info"}
+        s_dict[7] = { "meaning" : "a b-hadron resonance is required, the extra flag specifies the type of resonance", "type" : "info"}
+        s_dict[8] = { "meaning" : "a bb̄-meson  is required, the extra flag specifies the type of resonance", "type" : "info"}
+        s_dict[9] = { "meaning" : "two or more b-hadrons, amongst a list of specified combinations, are required", "type" : "info"}
+
+    elif g_flag == 2:
+        s_dict[0] = { "meaning" : "a c-hadron, amongst a list of more than one specified species, is required", "type" : "info"}
+        s_dict[1] = { "meaning" : "a $D^−$ is required", "type" : "info"}
+        s_dict[2] = { "meaning" : "a $D^0$ is required", "type" : "info"}
+        s_dict[3] = { "meaning" : "a $D_s^-$ is required", "type" : "info"}
+        s_dict[4] = { "meaning" : "a $J/\psi$ is required", "type" : "info"}
+        s_dict[5] = { "meaning" : "a $\Lambda_c$ is required", "type" : "info"}
+        s_dict[6] = { "meaning" : "a specific c-baryon, other than $\Lambda_c$, is required the extra flag specifies the type of baryon, see Table 12 and Table 13", "type" : "info"}
+        s_dict[7] = { "meaning" : "a c-hadron resonance is required, the extra flag specifies the type of resonance", "type" : "info"}
+        s_dict[8] = { "meaning" : "a (cc̄-meson other than $J/\psi$) is required, the extra flag specifies the type of resonance", "type" : "info"}
+        s_dict[9] = { "meaning" : "two or more c-hadrons, amongst a list of specified combinations, are required", "type" : "info"}
 
     elif g_flag == 3:
         s_dict[0] = { "meaning" : "no requirement", "type" : "info"}
