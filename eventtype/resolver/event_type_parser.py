@@ -155,6 +155,7 @@ def get_d_info_dict(g_flag, c_flag):
     return d_dict
 
 def get_d_info(d_flag, g_flag, c_flag):
+    d_dict = get_d_info_dict(g_flag=g_flag, c_flag=c_flag)
     if d_flag not in d_dict.keys():
         return { "meaning" : "no fitting g flag", "type" : "error"}
     else:
@@ -212,7 +213,7 @@ def get_c_info_dict(g_flag):
     return c_dict
 
 def get_c_info(c_flag, g_flag):
-    c_dict = get_c_info_dict
+    c_dict = get_c_info_dict(g_flag=g_flag)
     if c_flag not in c_dict.keys():
         return { "meaning" : "no fitting g flag", "type" : "error"}
     else:
@@ -379,12 +380,12 @@ def get_x_info(x_flag, g_flag, s_flag):
         else:
             return {"meaning" : "reserve", "type" : "error"}
     else:
-        info_dict = get_x_info_dict(g_flag, s_flag)
+        x_info_dict = get_x_info_dict(g_flag, s_flag)
         try:
-            info_dict =  x_dict[x_flag]
+            response =  x_info_dict[x_flag]
         except KeyError:
-            info_dict =  { "meaning" : "reserve", "type" : "error"}
-        return info_dict
+            response =  { "meaning" : "reserve", "type" : "error"}
+        return response
 
 def get_u_info():
     return { "meaning" : "reserved user flag indicating various different generator conditions.", "type" : "info"}
