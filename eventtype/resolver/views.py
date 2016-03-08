@@ -133,7 +133,7 @@ def builder(request):
         return HttpResponse(template.render(context))
 
     if "t_flag" not in known_flags and "c_flag" in known_flags and "g_flag" in known_flags:
-        if request.GET["g_flag"] == 6 :
+        if request.GET["g_flag"] == "6" :
             single_choice = [
                 {"meaning" : "Events are produced for both beams", "name" : "0"},
                 {"meaning" : "Events are produced for beam 1 (traveling from VeLo to Muon system)", "name" : "1"},
@@ -148,40 +148,41 @@ def builder(request):
                                             })
             return HttpResponse(template.render(context))
             
-        elif request.GET["g_flag"] == 5: 
-                if c_flag == 0:
+        elif request.GET["g_flag"] == "5": 
+                if request.GET["c_flag"] == "0":
                     template = loader.get_template('builder/get_four_momentum.html') #gives the last 4 digits -> afterwards we are done
                     # get the four-digit value of the momentum of the particle (The momentum is given in GeV,rounded up)
                     context = RequestContext(request, {"get_dict" : request.GET.items()})
                     return HttpResponse(template.render(context))
 
-                elif c_flag == 1:
+                elif request.GET["c_flag"] == "1":
                     template = loader.get_template('builder/get_eta_range.html') #gives the last 4 digits -> afterwards we are done
                     context = RequestContext(request, {"get_dict" : request.GET.items()})
                     return HttpResponse(template.render(context))
                 elif c_flag in [2,3]:
                     # "flag must be zero"
-                    request.GET["c_flag"] = 0
+                    request.GET["c_flag"] = "0"
                 else:
                     pass # the flag is not defined
         else:
-            template = loader.get_template('builder/get_number_charged_particles.html') #gives the last 4 digits -> afterwards we are done
+            template = loader.get_template('builder/get_number_charged_particles.html')
             context = RequestContext(request, {"get_dict" : request.GET.items()})
             return HttpResponse(template.render(context))
     if "n_flag" not in known_flags and  "g_flag" in known_flags  and "c_flag" in known_flags and "s_flag" in known_flags:
-        if request.GET["g_flag"] == 6 and request.GET["c_flag"] in [0,1]:  
-            template = loader.get_template('builder/get_gas_type.html') #gives the last 4 digits -> afterwards we are done
+        if request.GET["g_flag"] == "6" and request.GET["c_flag"] in [0,1]:  
+            template = loader.get_template('builder/get_gas_type.html') 
+            #gives the last 4 digits, afterwards we are done
             context = RequestContext(request, {"get_dict" : request.GET.items()})
             return HttpResponse(template.render(context))
-        elif request.GET["g_flag"] == 5 and request.GET["c_flag"] in [2,3]:
-            request.GET["n_flag"] = 0
+        elif request.GET["g_flag"] == "5" and request.GET["c_flag"] in [2,3]:
+            request.GET["n_flag"] = "0"
         else:
-            template = loader.get_template('builder/get_neutral_decays.html') #gives the last 4 digits -> afterwards we are done
+            template = loader.get_template('builder/get_neutral_decays.html')
             context = RequestContext(request, {"get_dict" : request.GET.items()})
             return HttpResponse(template.render(context))
 
     if "x_flag" not in known_flags and "g_flag" in known_flags and "s_flag" in known_flags and "n_flag" in known_flags and "t_flag" in known_flags:
-        if not (request.GET["g_flag"] == 5 and (request.GET["t_flag"]!=0 or request.GET["n_flag"]!=0)):
+        if not (request.GET["g_flag"] == "5" and (request.GET["t_flag"] != "0" or request.GET["n_flag"] != "0")):
             x_choices = get_x_info_dict(g_flag=int(request.GET["g_flag"]), s_flag=int(request.GET["s_flag"]))
             if x_choices:
                 single_choice = []
