@@ -266,17 +266,20 @@ def get_n_info(n_flag, g_flag, c_flag, s_flag):
             else:
                 return {"meaning" : "reserve", "type" : "error"}
     else:
-        meaning = ""
+        meaning = []
         binary = "{0:b}".format(n_flag).zfill(4)
         if binary[-1] == "1":
-            meaning += " at least one K S 0 → π + π − , Λ → pπ − or Λ̄ → p̄π +"
+            meaning += ["at least one $K_S^0 \\to \pi^+ \pi^-$, $\Lambda \\to p \pi^-$ or  $\Lambda \\to \\bar{p} \pi^+$"]
         if binary[-2] == "1":
-            meaning += " at least one γ not from π 0 → γγ, η → γγ nor a radiative photon"
+            meaning += ["at least one $\gamma$ not from $\pi^0 \\to \gamma \gamma$, $\eta \\to \gamma \gamma$ nor a radiative photon "]
         if binary[-3] == "1":
-            meaning += "at least one $\pi_0 \\to \gamma \gamma$ or $\eta \\to \gamma \gamma$"
+            meaning += ["at least one $\pi_0 \\to \gamma \gamma$ or $\eta \\to \gamma \gamma $"]
         if binary[-4] == "1":
-            meaning += " at least one neutron or $K_L^0$"
-        return{ "meaning" : meaning, "type" : "info"}
+            meaning += [" at least one neutron or $K_L^0$"]
+        if not meaning:
+            return{ "meaning" : " certain neutral decays are not present in the decay chain", "type" : "info"}
+        else:
+            return{ "meaning" : " AND ".join(meaning), "type" : "info"}
 
 def get_x_info(x_flag, g_flag, s_flag):
     if g_flag == 5 and (t_flag!=0 or n_flag!=0) : 
