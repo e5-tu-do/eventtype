@@ -164,18 +164,18 @@ def get_c_info(c_flag, g_flag):
         # is flagged elsewhere, the charm content of the signal particle does not trigger the charm-and-
         # lepton flag (Such as D ∗ and Jpsi signal particles).
         c_dict[0] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: 0 , electron : 0", "type" : "info"}
-        c_dict[1] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: $\geq1$ , electron : $geq$ 0", "type" : "info"}
-        c_dict[2] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: 0 , electron : $geq$ 1", "type" : "info"}
+        c_dict[1] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: $\geq1$ , electron : at last 0", "type" : "info"}
+        c_dict[2] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: 0 , electron : at last 1", "type" : "info"}
 
-        c_dict[3] = {"meaning" : "cc- meson: $geq$ 1, open-charm hadron: 0, muon: 0 , electron : 0", "type" : "info"}
-        c_dict[4] = {"meaning" : "cc- meson: $geq$ 1, open-charm hadron: 0, muon: $geq$ 1 , electron : $geq$ 0", "type" : "info"}
-        c_dict[5] = {"meaning" : "cc- meson: $geq$ 1, open-charm hadron: 0, muon: 0 , electron : $geq$ 1", "type" : "info"}
+        c_dict[3] = {"meaning" : "cc- meson: at last 1, open-charm hadron: 0, muon: 0 , electron : 0", "type" : "info"}
+        c_dict[4] = {"meaning" : "cc- meson: at last 1, open-charm hadron: 0, muon: at last 1 , electron : at last 0", "type" : "info"}
+        c_dict[5] = {"meaning" : "cc- meson: at last 1, open-charm hadron: 0, muon: 0 , electron : at last 1", "type" : "info"}
 
-        c_dict[6] = {"meaning" : "cc- meson: $geq$ 0, open-charm hadron: 1, muon: 0 , electron : 0", "type" : "info"}
-        c_dict[7] = {"meaning" : "cc- meson: $geq$ 0, open-charm hadron: $geq$ 1, muon: $geq$ 1 , electron : $geq$ 0", "type" : "info"}
-        c_dict[8] = {"meaning" : "cc- meson: $geq$ 0, open-charm hadron: $geq$ 1, muon: 0 , electron : $geq$ 1", "type" : "info"}
+        c_dict[6] = {"meaning" : "cc- meson: at last 0, open-charm hadron: 1, muon: 0 , electron : 0", "type" : "info"}
+        c_dict[7] = {"meaning" : "cc- meson: at last 0, open-charm hadron: at last 1, muon: at last 1 , electron : at last 0", "type" : "info"}
+        c_dict[8] = {"meaning" : "cc- meson: at last 0, open-charm hadron: at last 1, muon: 0 , electron : at last 1", "type" : "info"}
 
-        c_dict[9] = {"meaning" : "cc- meson: $geq$ 0, open-charm hadron: $geq$ 2, muon: 0 , electron : 0", "type" : "info"}
+        c_dict[9] = {"meaning" : "cc- meson: at last 0, open-charm hadron: at last 2, muon: 0 , electron : 0", "type" : "info"}
 
     elif g_flag == 5:
         c_dict[0] =  {"meaning" : "fixed momentum (specified in other flags) in calo acceptance", "type" : "info"}
