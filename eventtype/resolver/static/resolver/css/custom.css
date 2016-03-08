@@ -17,6 +17,10 @@ body {
 	text-align: left;
 }
 
+#eventtype{
+	font-size: 300%;
+}
+
 #charged_tracks_form{
 	margin-bottom: 2em;
 }
@@ -25,8 +29,12 @@ body {
 	max-width: 3em;
 }
 
+h1 {
+	font-size: 350%;
+}
+
 label{
-	width: 100%
+	width: 100%;
 }
 
 

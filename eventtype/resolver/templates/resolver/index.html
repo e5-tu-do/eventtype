@@ -1,7 +1,9 @@
 {% extends "resolver/base.html" %}
 
 {% block content %}
-        <h1>LHCb Event Type Resolver</h1>
+        <h1>LHCb Event Type</h1>
+    <div class="jumbotron">
+        <h2>Event type resolver</h2>
 
         <p class="lead">Enter an 8-digit event type number and have the meaning of the numbers explained to you!</p>
 
@@ -14,6 +16,17 @@
                 </span>
             </div>
         </form>
+    </div>
+
+    <div class="jumbotron">
+        <h2>Event type builder</h2>
+
+        <p class="lead">Use the wizard to find the right event number for a decay.</p>
+
+        <a href="/build/"><button class="btn btn-primary btn-lg">Start >> </button></a>
+
+        
+    </div>
 
       
 {% endblock %}
