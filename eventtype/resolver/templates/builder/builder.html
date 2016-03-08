@@ -1,0 +1,20 @@
+{% extends "resolver/base.html" %}
+
+{% block content %}
+        <h1>LHCb Event Type Builder</h1>
+
+        <p class="lead">Here is what we figure out so far:  
+            {% if request.GET.g_flag %} {{ request.GET.g_flag }} {% else %} ? {% endif %}
+            {% if request.GET.s_flag %} {{ request.GET.s_flag }} {% else %} ? {% endif %}
+            {% if request.GET.d_flag %} {{ request.GET.d_flag }} {% else %} ? {% endif %}
+            {% if request.GET.c_flag %} {{ request.GET.c_flag }} {% else %} ? {% endif %}
+            {% if request.GET.t_flag %} {{ request.GET.t_flag }} {% else %} ? {% endif %}
+            {% if request.GET.n_flag %} {{ request.GET.n_flag }} {% else %} ? {% endif %}
+            {% if request.GET.x_flag %} {{ request.GET.x_flag }} {% else %} ? {% endif %}
+            {% if request.GET.u_flag %} {{ request.GET.u_flag }} {% else %} ? {% endif %}
+        </p>
+        {% block question %}
+        {% endblock %}
+
+      
+{% endblock %}

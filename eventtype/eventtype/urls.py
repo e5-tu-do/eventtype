@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', resolver.views.index),
     url(r'^resolve/$', resolver.views.resolve),
+    url(r'^build/$', resolver.views.builder),
     url(r'^about/$', resolver.views.about),
 ]

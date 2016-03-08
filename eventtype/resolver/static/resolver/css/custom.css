@@ -5,6 +5,30 @@ body {
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
+.container {
+	font-size: 18px;
+}
+
+.choice_form {
+	text-align: left;
+}
+
+#neutral_decays_form{
+	text-align: left;
+}
+
+#charged_tracks_form{
+	margin-bottom: 2em;
+}
+
+#charged_tracks_form  input {
+	max-width: 3em;
+}
+
+label{
+	width: 100%
+}
+
 
 #event_number_input_group{
 	max-width: 30em;
@@ -12,7 +36,6 @@ body {
 }
 
 #event_type_explained{
-	font-size: 1.5em;
 	margin: 1em 0 5em 0;
 	align: left;
 }

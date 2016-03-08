@@ -1,0 +1,26 @@
+{% extends "builder/builder.html" %}
+
+{% block question %}
+        
+        <p class="lead"> {{ description }}</p>
+
+
+        <form class="choice_form">
+            {% for choice in single_choice %}
+            <div class="radio">
+                <label>
+                <input type="radio" name="{{ flag_name }}" value="{{ choice.name }}">
+                    {{ choice.meaning }}
+                </label>
+            </div>
+            {% endfor %}
+            {% for keyval in get_dict %}
+                <input type="hidden" name="{{keyval.0}}" value="{{keyval.1}}">
+            {% endfor %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+
+      
+{% endblock %}

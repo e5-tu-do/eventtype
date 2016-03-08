@@ -1,0 +1,24 @@
+{% extends "builder/builder.html" %}
+
+{% block question %}
+        
+        <p class="lead"> Enter the total number of “stable” charged particles in the forced part of the
+decay chain(s) of the selected particle(s). If the count is larger than 9,
+enter 9. The value 0 is possible.</p> 
+
+
+
+        <form id="charged_tracks_form">
+            <input type="number" name="t_flag" step=1 max=9>
+            {% for keyval in get_dict %}
+                <input type="hidden" name="{{keyval.0}}" value="{{keyval.1}}">
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    The forced part of the decay chain(s) is as defined by the decay flag, and the selected particle(s) are those involved in the definition of the selection flag. Only the following charged particles are counted: protons, charged pions, charged kaons, electrons and muons (tracks from K S 0 and Λ decays are counted). 
+
+
+
+      
+{% endblock %}

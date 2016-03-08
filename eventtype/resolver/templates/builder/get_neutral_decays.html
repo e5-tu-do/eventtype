@@ -1,0 +1,47 @@
+{% extends "builder/builder.html" %}
+
+{% block question %}
+        
+        <p class="lead"> Select one or more of the following</p> 
+
+
+        <form id="neutral_decays_form" >
+            <label><input type="checkbox" id="n_flag1" > at least one $K_S^0 \to \pi^+ \pi^-$, $\Lambda \to p \pi^-$ or  $\Lambda \to \bar{p} \pi^+$ </label>
+            <label>
+                <input type="checkbox" id="n_flag2" > 
+                at least one $\gamma$ not from $\pi^0 \to \gamma \gamma$, $\eta \to \gamma \gamma$ nor a radiative photon 
+            </label>
+            <label><input type="checkbox" id="n_flag4" > at least one $\pi_0 \to \gamma \gamma$ or $\eta \to \gamma \gamma $ </label>
+            <label><input type="checkbox" id="n_flag8" > at least one neutron or $K_L^0$ </label>
+            <input type="hidden" name="n_flag" id="n_flag" value="calculate">
+            {% for keyval in get_dict %}
+                <input type="hidden" name="{{keyval.0}}" value="{{keyval.1}}">
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+      
+{% endblock %}
+
+{% block end %}
+    <script>
+        $(function() {
+            $("form").submit(function() {
+                var sum = 0;
+                if ($("#n_flag1").prop("checked")) {
+                    sum += 1;
+                } 
+                if ($("#n_flag2").prop("checked")) {
+                    sum += 2;
+                }
+                if ($("#n_flag4").prop("checked")) {
+                    sum += 4;
+                }
+                if ($("#n_flag8").prop("checked")) {
+                    sum += 8;
+                }
+                $("#n_flag").val(sum);
+            });
+        });
+    </script>
+{% endblock %}

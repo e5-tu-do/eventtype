@@ -14,8 +14,7 @@ def get_g_info(g_flag):
     g_dict[9] = { "meaning" : "real data", type : "info"}
     return g_dict[g_flag]
 
-
-def get_s_info(s_flag, g_flag):
+def get_s_info_dict(g_flag):
     s_dict = {}
     if g_flag == 1:
         s_dict[0] = { "meaning" : "a bhadron, amongst a list of more than one specified species, is required", "type" : "info"}
@@ -87,14 +86,19 @@ def get_s_info(s_flag, g_flag):
         s_dict[7] = { "meaning" : "reserve", "type" : "error"}
         s_dict[8] = { "meaning" : "reserve", "type" : "error"}
         s_dict[9] = { "meaning" : "hadrons generated", "type" : "info"}
-    else:
-        return { "meaning" : "no fitting g flag", "type" : "error"}
-    return s_dict[s_flag]
+    return s_dict
 
-def get_d_info(d_flag, g_flag, c_flag):
+def get_s_info(s_flag, g_flag):
+    s_dict = get_s_info_dict(s_flag)
+    if s_flag not in s_dict.keys():
+        return { "meaning" : "no fitting g flag", "type" : "error"}
+    else:
+        return s_dict[s_flag]
+
+def get_d_info_dict(g_flag, c_flag):
     d_dict = {}
     if g_flag in [1, 2, 3, 4]:
-        d_dict[0] = { "meaning" : "No decay is forced (fully inclusive mode)"}
+        d_dict[0] = { "meaning" : "No decay is forced (fully inclusive mode)", "type" : "info"}
         d_dict[1] = { "meaning" : "The selected particle(s) is(are) forced to decay to a unique exclusive final state, with a unique intermediate state (if any)", "type" : "info" }
         d_dict[2] = { "meaning" : "The selected particle(s) is(are) forced to decay to a unique exclusive final state, with multiple intermediate states", "type" : "info" }
         d_dict[3] = { "meaning" : "The selected particle(s) is(are) forced to decay to one of several exclusive final states (explicitely specified in a list) with identical topology", "type" : "info" }
@@ -148,11 +152,15 @@ def get_d_info(d_flag, g_flag, c_flag):
         d_dict[7] = {"meaning" : "no shield, loss on TCTH.L8.B1", "type" : "info" }
         d_dict[8] = {"meaning" : "no shield, loss on TCTH.L8.B1", "type" : "info" }
         d_dict[9] = {"meaning" : "reserve", "type" : "error"}
-    else:
-        return { "meaning" : "no fitting g flag", "type" : "error"}
-    return d_dict[d_flag]
+    return d_dict
 
-def get_c_info(c_flag, g_flag):
+def get_d_info(d_flag, g_flag, c_flag):
+    if d_flag not in d_dict.keys():
+        return { "meaning" : "no fitting g flag", "type" : "error"}
+    else:
+        return d_dict[d_flag]
+
+def get_c_info_dict(g_flag):
     c_dict = {}
     if g_flag in [1,2,3,4]:
         # When the general flag is equal to 1, 2, 3 or 4, this flag gives information on the presence or absence
@@ -200,10 +208,15 @@ def get_c_info(c_flag, g_flag):
         c_dict[7] =  {"meaning" : "reserve", "type" : "error"}
         c_dict[8] =  {"meaning" : "reserve", "type" : "error"}
         c_dict[9] =  {"meaning" : "reserve", "type" : "error"}
-    else:
-        return { "meaning" : "no fitting g flag", "type" : "error"}
-    return c_dict[c_flag]
 
+    return c_dict
+
+def get_c_info(c_flag, g_flag):
+    c_dict = get_c_info_dict
+    if c_flag not in c_dict.keys():
+        return { "meaning" : "no fitting g flag", "type" : "error"}
+    else:
+        return c_dict[c_flag]
 
 
 
@@ -281,6 +294,82 @@ def get_n_info(n_flag, g_flag, c_flag, s_flag):
         else:
             return{ "meaning" : " AND ".join(meaning), "type" : "info"}
 
+
+def get_x_info_dict(g_flag, s_flag):
+    x_dict = {}
+    if g_flag == 1 and s_flag == 6 :
+        x_dict[0] = { "meaning" : "a Σ −b or Σ̄ b is required", "type" : "info"}
+        x_dict[1] = { "meaning" : "a Σ b or Σ̄ b is required", "type" : "info"}
+        x_dict[2] = { "meaning" : "a Σ +b or Σ̄ b is required", "type" : "info"}
+        x_dict[3] = { "meaning" : "a Ξ b or Ξ̄ b is required", "type" : "info"}
+        x_dict[4] = { "meaning" : "a Ξ 0 b or Ξ̄ 0 b is required", "type" : "info"}
+        x_dict[5] = { "meaning" : "a Ω −b or Ω̄ b is required", "type" : "info"}
+        x_dict[6] = { "meaning" : "a bc baryon is required", "type" : "info"}
+        x_dict[7] = { "meaning" : "a bb baryon is required", "type" : "info"}
+        x_dict[8] = { "meaning" : "reserve", "type" : "error"}
+        x_dict[9] = { "meaning" : "all other b baryons", "type" : "info"}
+
+    elif g_flag == 1 and s_flag==7 : 
+        x_dict[0] = { "meaning" : "a B ∗0 or B̄ ∗0 is required", "type" : "info"}
+        x_dict[1] = { "meaning" : "a B ∗+ or B ∗− is required", "type" : "info"}
+        x_dict[2] = { "meaning" : "a B s ∗0 or B̄ s ∗0 is required", "type" : "info"}
+        x_dict[3] = { "meaning" : "a B 1 0 (L) or B̄ 1 0 (L) is required", "type" : "info"}
+        x_dict[4] = { "meaning" : "a B 1 + (L) or B 1 − (L) is required", "type" : "info"}
+        x_dict[5] = { "meaning" : "a B s1 (L) or B̄ s1 (L) is required", "type" : "info"}
+        x_dict[6] = { "meaning" : "a B 2 (L) or B̄ 2 ∗0 (L) is required", "type" : "info"}
+        x_dict[7] = { "meaning" : "a B 2 ∗+ (L) or B 2 ∗− (L) is required", "type" : "info"}
+        x_dict[8] = { "meaning" : "a B (L) or B̄ s2 is required", "type" : "info"}
+        x_dict[9] = { "meaning" : "reserve", "type" : "error"}
+
+    elif g_flag == 1 and s_flag==8 : 
+        x_dict[0] = { "meaning" : "a Υ(1S) is required", "type" : "info"}
+        x_dict[1] = { "meaning" : "a Υ(2S) is required", "type" : "info"}
+        x_dict[2] = { "meaning" : "a Υ(3S) is required", "type" : "info"}
+        x_dict[3] = { "meaning" : "a Υ(4S) is required", "type" : "info"}
+        x_dict[4] = { "meaning" : "a Υ(5S) is required", "type" : "info"}
+        x_dict[5] = { "meaning" : "a χ b0 (1P ) is required", "type" : "info"}
+        x_dict[6] = { "meaning" : "a χ b1 (1P ) is required", "type" : "info"}
+        x_dict[7] = { "meaning" : "a χ b2 (1P ) is required", "type" : "info"}
+        x_dict[8] = { "meaning" : "reserve", "type" : "error"}
+        x_dict[9] = { "meaning" : "reserve", "type" : "error"}
+
+    elif g_flag == 2 and s_flag == 6 :
+        x_dict[0] = { "meaning" : "a Σ 0 c or Σ̄ 0 c is required" , "type" : "info"}
+        x_dict[1] = { "meaning" : "reserved" , "type" : "error"}
+        x_dict[2] = { "meaning" : "a Σ ++ or Σ̄ −−is required" , "type" : "info"}
+        x_dict[3] = { "meaning" : "a Σ c or Σ̄ ∗0c is required" , "type" : "info"}
+        x_dict[4] = { "meaning" : "a Σ ∗++ or Σ̄ ∗−− is required" , "type" : "info"}
+        x_dict[5] = { "meaning" : "a Ξ cc or Ξ̄ − cc is required" , "type" : "info"}
+        x_dict[6] = { "meaning" : "a Ξ ++ cc or Ξ̄ cc is required" , "type" : "info"}
+        x_dict[7] = { "meaning" : "reserve", "type" : "error"}
+        x_dict[8] = { "meaning" : "reserve", "type" : "error"}
+        x_dict[9] = { "meaning" : "reserve", "type" : "error"}
+
+    elif g_flag == 2 and s_flag == 7 :
+        x_dict[0] = { "meaning" : "a D ∗+ or D ∗− is required", "type" : "info" }
+        x_dict[1] = { "meaning" : "a D ∗0 or D̄ ∗0 is required", "type" : "info" }
+        x_dict[2] = { "meaning" : "a D s ∗+ or D s ∗− is required", "type" : "info" }
+        x_dict[3] = { "meaning" : "a D s2(2536) + or D s2(2536) − is required", "type" : "info" }
+        x_dict[4] = { "meaning" : "a D 2 (2460) or D̄ 2 (2460) − is required", "type" : "info" }
+        x_dict[5] = { "meaning" : "a D 2 ∗ (2460) + or D 2 ∗ (2460) − is required", "type" : "info" }
+        x_dict[6] = { "meaning" : "a D s1 (2460) + or D s1 (2460) − is required", "type" : "info" }
+        x_dict[7] = { "meaning" : "a D ∗+ or D ∗− is required", "type" : "info" }
+        x_dict[8] = { "meaning" : "reserve", "type" : "error"}
+        x_dict[9] = { "meaning" : "reserve", "type" : "error"}
+
+    elif g_flag == 2 and s_flag == 8 :
+        x_dict[0] = { "meaning" : "a ψ(2S) is required", "type" : "info"}
+        x_dict[1] = { "meaning" : "a X(3872) is required", "type" : "info"}
+        x_dict[2] = { "meaning" : "a h c is required", "type" : "info"}
+        x_dict[3] = { "meaning" : "a χ c0 is required", "type" : "info"}
+        x_dict[4] = { "meaning" : "a χ c1 is required", "type" : "info"}
+        x_dict[5] = { "meaning" : "a χ c2 is required", "type" : "info"}
+        x_dict[6] = { "meaning" : "a η c (1S) is required", "type" : "info"}
+        x_dict[7] = { "meaning" : "a ψ(3770) is required", "type" : "info"}
+        x_dict[8] = { "meaning" : "reserve", "type" : "error"}
+        x_dict[9] = { "meaning" : "reserve", "type" : "error"}
+    return x_dict
+
 def get_x_info(x_flag, g_flag, s_flag):
     if g_flag == 5 and (t_flag!=0 or n_flag!=0) : 
         if c_flag == 0:
@@ -290,78 +379,7 @@ def get_x_info(x_flag, g_flag, s_flag):
         else:
             return {"meaning" : "reserve", "type" : "error"}
     else:
-        x_dict = {}
-        if g_flag == 1 and s_flag == 6 :
-            x_dict[0] = { "meaning" : "a Σ −b or Σ̄ b is required", "type" : "info"}
-            x_dict[1] = { "meaning" : "a Σ b or Σ̄ b is required", "type" : "info"}
-            x_dict[2] = { "meaning" : "a Σ +b or Σ̄ b is required", "type" : "info"}
-            x_dict[3] = { "meaning" : "a Ξ b or Ξ̄ b is required", "type" : "info"}
-            x_dict[4] = { "meaning" : "a Ξ 0 b or Ξ̄ 0 b is required", "type" : "info"}
-            x_dict[5] = { "meaning" : "a Ω −b or Ω̄ b is required", "type" : "info"}
-            x_dict[6] = { "meaning" : "a bc baryon is required", "type" : "info"}
-            x_dict[7] = { "meaning" : "a bb baryon is required", "type" : "info"}
-            x_dict[8] = { "meaning" : "reserve", "type" : "error"}
-            x_dict[9] = { "meaning" : "all other b baryons", "type" : "info"}
-
-        elif g_flag == 1 and s_flag==7 : 
-            x_dict[0] = { "meaning" : "a B ∗0 or B̄ ∗0 is required", "type" : "info"}
-            x_dict[1] = { "meaning" : "a B ∗+ or B ∗− is required", "type" : "info"}
-            x_dict[2] = { "meaning" : "a B s ∗0 or B̄ s ∗0 is required", "type" : "info"}
-            x_dict[3] = { "meaning" : "a B 1 0 (L) or B̄ 1 0 (L) is required", "type" : "info"}
-            x_dict[4] = { "meaning" : "a B 1 + (L) or B 1 − (L) is required", "type" : "info"}
-            x_dict[5] = { "meaning" : "a B s1 (L) or B̄ s1 (L) is required", "type" : "info"}
-            x_dict[6] = { "meaning" : "a B 2 (L) or B̄ 2 ∗0 (L) is required", "type" : "info"}
-            x_dict[7] = { "meaning" : "a B 2 ∗+ (L) or B 2 ∗− (L) is required", "type" : "info"}
-            x_dict[8] = { "meaning" : "a B (L) or B̄ s2 is required", "type" : "info"}
-            x_dict[9] = { "meaning" : "reserve", "type" : "error"}
-
-        elif g_flag == 1 and s_flag==8 : 
-            x_dict[0] = { "meaning" : "a Υ(1S) is required", "type" : "info"}
-            x_dict[1] = { "meaning" : "a Υ(2S) is required", "type" : "info"}
-            x_dict[2] = { "meaning" : "a Υ(3S) is required", "type" : "info"}
-            x_dict[3] = { "meaning" : "a Υ(4S) is required", "type" : "info"}
-            x_dict[4] = { "meaning" : "a Υ(5S) is required", "type" : "info"}
-            x_dict[5] = { "meaning" : "a χ b0 (1P ) is required", "type" : "info"}
-            x_dict[6] = { "meaning" : "a χ b1 (1P ) is required", "type" : "info"}
-            x_dict[7] = { "meaning" : "a χ b2 (1P ) is required", "type" : "info"}
-            x_dict[8] = { "meaning" : "reserve", "type" : "error"}
-            x_dict[9] = { "meaning" : "reserve", "type" : "error"}
-
-        elif g_flag == 2 and s_flag == 6 :
-            x_dict[0] = { "meaning" : "a Σ 0 c or Σ̄ 0 c is required" , "type" : "info"}
-            x_dict[1] = { "meaning" : "reserved" , "type" : "error"}
-            x_dict[2] = { "meaning" : "a Σ ++ or Σ̄ −−is required" , "type" : "info"}
-            x_dict[3] = { "meaning" : "a Σ c or Σ̄ ∗0c is required" , "type" : "info"}
-            x_dict[4] = { "meaning" : "a Σ ∗++ or Σ̄ ∗−− is required" , "type" : "info"}
-            x_dict[5] = { "meaning" : "a Ξ cc or Ξ̄ − cc is required" , "type" : "info"}
-            x_dict[6] = { "meaning" : "a Ξ ++ cc or Ξ̄ cc is required" , "type" : "info"}
-            x_dict[7] = { "meaning" : "reserve", "type" : "error"}
-            x_dict[8] = { "meaning" : "reserve", "type" : "error"}
-            x_dict[9] = { "meaning" : "reserve", "type" : "error"}
-
-        elif g_flag == 2 and s_flag == 7 :
-            x_dict[0] = { "meaning" : "a D ∗+ or D ∗− is required", "type" : "info" }
-            x_dict[1] = { "meaning" : "a D ∗0 or D̄ ∗0 is required", "type" : "info" }
-            x_dict[2] = { "meaning" : "a D s ∗+ or D s ∗− is required", "type" : "info" }
-            x_dict[3] = { "meaning" : "a D s2(2536) + or D s2(2536) − is required", "type" : "info" }
-            x_dict[4] = { "meaning" : "a D 2 (2460) or D̄ 2 (2460) − is required", "type" : "info" }
-            x_dict[5] = { "meaning" : "a D 2 ∗ (2460) + or D 2 ∗ (2460) − is required", "type" : "info" }
-            x_dict[6] = { "meaning" : "a D s1 (2460) + or D s1 (2460) − is required", "type" : "info" }
-            x_dict[7] = { "meaning" : "a D ∗+ or D ∗− is required", "type" : "info" }
-            x_dict[8] = { "meaning" : "reserve", "type" : "error"}
-            x_dict[9] = { "meaning" : "reserve", "type" : "error"}
-
-        elif g_flag == 2 and s_flag == 8 :
-            x_dict[0] = { "meaning" : "a ψ(2S) is required", "type" : "info"}
-            x_dict[1] = { "meaning" : "a X(3872) is required", "type" : "info"}
-            x_dict[2] = { "meaning" : "a h c is required", "type" : "info"}
-            x_dict[3] = { "meaning" : "a χ c0 is required", "type" : "info"}
-            x_dict[4] = { "meaning" : "a χ c1 is required", "type" : "info"}
-            x_dict[5] = { "meaning" : "a χ c2 is required", "type" : "info"}
-            x_dict[6] = { "meaning" : "a η c (1S) is required", "type" : "info"}
-            x_dict[7] = { "meaning" : "a ψ(3770) is required", "type" : "info"}
-            x_dict[8] = { "meaning" : "reserve", "type" : "error"}
-            x_dict[9] = { "meaning" : "reserve", "type" : "error"}
+        info_dict = get_x_info_dict(g_flag, s_flag)
         try:
             info_dict =  x_dict[x_flag]
         except KeyError:
