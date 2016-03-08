@@ -33,7 +33,7 @@ def resolve(request):
 
         information["g"] = get_g_info(g)
         information["s"] = get_s_info(s_flag=s, g_flag=g)
-        information["d"] = get_d_info(d_flag=d, g_flag=g, c_flag=c)
+        information["d"] = get_d_info(d_flag=d, g_flag=g, c_flag=c, s_flag=s)
         information["c"] = get_c_info(c_flag=c, g_flag=g)
         information["t"] = get_t_info(t_flag=t, g_flag=g, c_flag=c)
         information["n"] = get_n_info(n_flag=n, g_flag=g, c_flag=c, s_flag=s)
@@ -116,8 +116,8 @@ def builder(request):
                                             })
         return HttpResponse(template.render(context))
 
-    if "d_flag" not in known_flags and "c_flag" in known_flags and "g_flag" in known_flags:
-        d_choices = get_d_info_dict(g_flag=int(request.GET["g_flag"]), c_flag=int(request.GET["c_flag"]))
+    if "d_flag" not in known_flags and "c_flag" in known_flags and "g_flag" in known_flags and "s_flag" in known_flags:
+        d_choices = get_d_info_dict(g_flag=int(request.GET["g_flag"]), c_flag=int(request.GET["c_flag"]), s_flag=int(request.GET["s_flag"]))
         single_choice = []
         for flag, values in d_choices.items():
             if values["type"] == "info":

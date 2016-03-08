@@ -3,7 +3,7 @@
 {% block content %}
         <h1>LHCb Event Type Builder</h1>
 
-        <p class="lead">Results:<br>
+        <p class="lead">Result:<br>
             <div id="eventtype">
                 {% if request.GET.g_flag %} {{ request.GET.g_flag }} {% else %} X {% endif %}
                 {% if request.GET.s_flag %} {{ request.GET.s_flag }} {% else %} X {% endif %}

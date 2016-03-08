@@ -95,7 +95,7 @@ def get_s_info(s_flag, g_flag):
     else:
         return s_dict[s_flag]
 
-def get_d_info_dict(g_flag, c_flag):
+def get_d_info_dict(g_flag, c_flag, s_flag):
     d_dict = {}
     if g_flag in [1, 2, 3, 4]:
         d_dict[0] = { "meaning" : "No decay is forced (fully inclusive mode)", "type" : "info"}
@@ -154,8 +154,8 @@ def get_d_info_dict(g_flag, c_flag):
         d_dict[9] = {"meaning" : "reserve", "type" : "error"}
     return d_dict
 
-def get_d_info(d_flag, g_flag, c_flag):
-    d_dict = get_d_info_dict(g_flag=g_flag, c_flag=c_flag)
+def get_d_info(d_flag, g_flag, c_flag, s_flag):
+    d_dict = get_d_info_dict(g_flag=g_flag, c_flag=c_flag, s_flag=s_flag)
     if d_flag not in d_dict.keys():
         return { "meaning" : "no fitting g flag", "type" : "error"}
     else:
