@@ -237,7 +237,10 @@ def get_t_info(t_flag, g_flag, c_flag):
             else:
                 return {"meaning" : "reserve", "type" : "error"}
     else:
-        return {"meaning" : str(t_flag) + " “stable” charged particles in the forced part of the decay chain(s) of the selected particle(s).  If the count is larger than 9, then the flag is set to 9.", "type" : "info"}
+        if t_flag < 9:
+            return {"meaning" : str(t_flag) + " “stable” charged particles in the forced part of the decay chain(s) of the selected particle(s)", "type" : "info"}
+        else:
+            return {"meaning" : "At least 9  “stable” charged particles in the forced part of the decay chain(s) of the selected particle(s)", "type" : "info"}
 
 def get_n_info(n_flag, g_flag, c_flag, s_flag):
     # The neutral flag indicated the presence of certain neutral particles in the forced part of the decay
