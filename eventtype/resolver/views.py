@@ -30,7 +30,7 @@ def resolve(request):
     information["d"] = get_d_info(d_flag=d, g_flag=g, c_flag=c)
     information["c"] = get_c_info(c_flag=c, g_flag=g)
     information["t"] = get_t_info(t_flag=t, g_flag=g, c_flag=c)
-    information["n"] = get_n_info(n_flag=x, g_flag=g, c_flag=c, s_flag=s)
+    information["n"] = get_n_info(n_flag=n, g_flag=g, c_flag=c, s_flag=s)
     information["x"] = get_x_info(x_flag=x, g_flag=g, s_flag=s)
     information["u"] = get_u_info()
 

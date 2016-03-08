@@ -270,7 +270,7 @@ def get_n_info(n_flag, g_flag, c_flag, s_flag):
         if binary[-2] == "1":
             meaning += " at least one γ not from π 0 → γγ, η → γγ nor a radiative photon"
         if binary[-3] == "1":
-            meaning += " at least one $\pi_0 \to \gamma \gamma$ or $\eta \to \gamma \gamma$"
+            meaning += "at least one $\pi_0 \\to \gamma \gamma$ or $\eta \\to \gamma \gamma$"
         if binary[-4] == "1":
             meaning += " at least one neutron or $K_L^0$"
         return{ "meaning" : meaning, "type" : "info"}
@@ -363,4 +363,4 @@ def get_x_info(x_flag, g_flag, s_flag):
         return info_dict
 
 def get_u_info():
-    return { "user flag indicating various different generator conditions." : "reserve", "type" : "info"}
+    return { "meaning" : "user flag indicating various different generator conditions." : "reserve", "type" : "info"}
