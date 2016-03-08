@@ -363,4 +363,4 @@ def get_x_info(x_flag, g_flag, s_flag):
         return info_dict
 
 def get_u_info():
-    return { "meaning" : "user flag indicating various different generator conditions." : "reserve", "type" : "info"}
+    return { "meaning" : "reserved user flag indicating various different generator conditions.", "type" : "info"}
