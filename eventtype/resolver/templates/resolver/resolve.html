@@ -5,6 +5,29 @@
 {% block content %}
         <h1>LHCb Event Type Resolver</h1>
 
+
+        <p class="lead">Enter an 8-digit event type number and have the meaning of the numbers explained to you!</p>
+
+        <form action="/resolve/" >
+            <div class="input-group" id="event_number_input_group">
+                <span class="input-group-addon" id="basic-addon1">Event type:</span>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    pattern="[0-9]{8}" 
+                    placeholder="8 digits" 
+                    name="event_number_input" 
+                    title="Must be an 8 digit integer." 
+                    {%if has_event_number %} value="{{ event_number }}" {%endif%} 
+                >
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">{%if has_event_number %}Update{% else %}Resolve it!{% endif %}</button>
+                </span>
+            </div>
+        </form>
+
+    {%if has_event_number %}
+        <h2> Event number explanation: </h2>
         <table id="event_type_explained">
             <tr>
                 <td>{{ g.flag}}</td>
@@ -43,6 +66,7 @@
         <p class="lead"> Report bugs to me: schubert.konstantin@gmail.com </p>
 
         <p class="lead">  <a href="https://lhcb-release-area.web.cern.ch/LHCb-release-area/DOC/decfiles/releases/latest/table_evttype.php">List of all LHCb DECFILES with corresponding event type.</a> </p>
+    {% endif %}
 
       
 {% endblock %}

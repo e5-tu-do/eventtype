@@ -8,17 +8,18 @@ body {
 
 #event_number_input_group{
 	max-width: 30em;
-	margin: auto;
+	margin: 0 auto 2em auto;
 }
 
 #event_type_explained{
 	font-size: 1.5em;
-	margin: 5em 0;
+	margin: 1em 0 5em 0;
 	align: left;
 }
 
 table td, table td * {
     vertical-align: top;
+    text-align: left;
 }
 
 td {
