@@ -5,14 +5,14 @@
 
         <p class="lead">Result:<br>
             <div id="eventtype">
-                {% if request.GET.g_flag %} {{ request.GET.g_flag }} {% else %} X {% endif %}
-                {% if request.GET.s_flag %} {{ request.GET.s_flag }} {% else %} X {% endif %}
-                {% if request.GET.d_flag %} {{ request.GET.d_flag }} {% else %} X {% endif %}
-                {% if request.GET.c_flag %} {{ request.GET.c_flag }} {% else %} X {% endif %}
-                {% if request.GET.t_flag %} {{ request.GET.t_flag }} {% else %} X {% endif %}
-                {% if request.GET.n_flag %} {{ request.GET.n_flag }} {% else %} X {% endif %}
-                {% if request.GET.x_flag %} {{ request.GET.x_flag }} {% else %} X {% endif %}
-                {% if request.GET.u_flag %} {{ request.GET.u_flag }} {% else %} X {% endif %}
+                {% if request_get.g_flag %} {{ request_get.g_flag }} {% else %} X {% endif %}
+                {% if request_get.s_flag %} {{ request_get.s_flag }} {% else %} X {% endif %}
+                {% if request_get.d_flag %} {{ request_get.d_flag }} {% else %} X {% endif %}
+                {% if request_get.c_flag %} {{ request_get.c_flag }} {% else %} X {% endif %}
+                {% if request_get.t_flag %} {{ request_get.t_flag }} {% else %} X {% endif %}
+                {% if request_get.n_flag %} {{ request_get.n_flag }} {% else %} X {% endif %}
+                {% if request_get.x_flag %} {{ request_get.x_flag }} {% else %} X {% endif %}
+                {% if request_get.u_flag %} {{ request_get.u_flag }} {% else %} X {% endif %}
             </div>
         </p>
         {% block question %}

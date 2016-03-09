@@ -1,0 +1,52 @@
+{% extends "builder/builder.html" %}
+
+{% block question %}
+        
+        <p class="lead"> Enter minimum and maximum $\eta$ (pseudo rapidity) value of the produced particles</p> 
+
+
+
+        <form id="momentum_form">
+        	<div class="input-group etainput">
+	            <span class="input-group-addon">min $\eta$</span>
+                <input type="number" class="form-control" id="etamin"  step=1 max=99 placeholder="max 2 digits"  title="Integer between 0 and 99.">
+            </div>
+            <div class="input-group etainput">
+                <span class="input-group-addon">max $\eta$</span>
+                <input type="number" class="form-control" id="etamax" step=1 max=99 placeholder="max 2 digits"  title="Integer between 0 and 99.">
+            </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {% for keyval in get_dict %}
+                    <input type="hidden" name="{{keyval.0}}" value="{{keyval.1}}">
+                    <input type="hidden" name="t_flag" value="T">
+                    <input type="hidden" name="n_flag" value="O">
+                    <input type="hidden" name="x_flag" value="D">
+                    <input type="hidden" name="u_flag" value="O">
+                {% endfor %}
+        </form>
+
+      
+{% endblock %}
+
+
+
+{% block end %}
+    <script>
+        $(function() {
+            $("form").submit(function() {
+                var minval = parseInt($("#etamin").val(), 10);
+                var maxval = parseInt($("#etamax").val(), 10);
+                var t_flag = Math.floor( minval / 10 );
+                var n_flag = Math.floor( minval % 10 );
+                var x_flag = Math.floor( maxval / 10 );
+                var u_flag = Math.floor( maxval % 10 );
+
+                $("input[name='t_flag']").val(t_flag);
+                $("input[name='n_flag']").val(n_flag);
+                $("input[name='x_flag']").val(x_flag);
+                $("input[name='u_flag']").val(u_flag);
+
+            });
+        });
+    </script>
+{% endblock %}

@@ -13,6 +13,11 @@ body {
 	text-align: left;
 }
 
+.etainput {
+	width: 10em;
+	margin: auto;
+}
+
 #neutral_decays_form{
 	text-align: left;
 }

@@ -89,7 +89,7 @@ def get_s_info_dict(g_flag):
     return s_dict
 
 def get_s_info(s_flag, g_flag):
-    s_dict = get_s_info_dict(g_flag)
+    s_dict = get_s_info_dict(g_flag=g_flag)
     if s_flag not in s_dict.keys():
         return { "meaning" : "no fitting g flag", "type" : "error"}
     else:
@@ -189,14 +189,14 @@ def get_c_info_dict(g_flag):
     elif g_flag == 5:
         c_dict[0] =  {"meaning" : "fixed momentum (specified in other flags) in calo acceptance", "type" : "info"}
         c_dict[1] =  {"meaning" : "fixed momentum (specified in other flags) in trackers acceptance", "type" : "info"}
-        c_dict[1] =  {"meaning" : "reserve", "type" : "error"}
+        c_dict[2] =  {"meaning" : "reserve", "type" : "error"}
         c_dict[3] =  {"meaning" : "momentum range in calo acceptance", "type" : "info"}
-        c_dict[4] =  {"meaning" : "momentum range in trackers acceptance higher values can be chosen and fixed for flat η (range specified in other flags) or flat x-y", "type" : "info"}
-        c_dict[5] =  {"meaning" : "reserve", "type" : "error"}
-        c_dict[6] =  {"meaning" : "reserve", "type" : "error"}
-        c_dict[7] =  {"meaning" : "reserve", "type" : "error"}
-        c_dict[8] =  {"meaning" : "reserve", "type" : "error"}
-        c_dict[9] =  {"meaning" : "reserve", "type" : "error"}
+        c_dict[4] =  {"meaning" : "momentum range in trackers acceptance", "type" : "info"}
+        c_dict[5] =  {"meaning" : "flat $\eta$ (range specified in other flags) or flat x-y, flag set to 5", "type" : "info"}
+        c_dict[6] =  {"meaning" : "flat $\eta$ (range specified in other flags) or flat x-y, flag set to 6", "type" : "info"}
+        c_dict[7] =  {"meaning" : "flat $\eta$ (range specified in other flags) or flat x-y, flag set to 7", "type" : "info"}
+        c_dict[8] =  {"meaning" : "flat $\eta$ (range specified in other flags) or flat x-y, flag set to 8", "type" : "info"}
+        c_dict[9] =  {"meaning" : "flat $\eta$ (range specified in other flags) or flat x-y, flag set to 9", "type" : "info"}
 
     elif g_flag == 6:
         c_dict[0] = {"meaning" : "beam gas in VeLo" , "type" : "info" }

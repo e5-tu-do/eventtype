@@ -59,9 +59,9 @@ def resolve(request):
 def builder(request):
 
     # first we build a dict of the flags we already figure out
-    known_flags = request.GET.keys()
+    request_get = request.GET.dict()
 
-    if "g_flag" not in known_flags:
+    if "g_flag" not in request_get.keys():
         # this is the easiest flag to figure out.
         single_choice = [
             {"name" : 1, "meaning" : "Event contains a b quark, extracted from a minimum bias sample"},
@@ -79,12 +79,13 @@ def builder(request):
                                             "single_choice" : single_choice, 
                                             "description" : description, 
                                             "flag_name" : "g_flag", 
-                                            "get_dict" : request.GET.items()
+                                            "get_dict" : request_get.items(),
+                                            "request_get" : request_get,
                                             })
         return HttpResponse(template.render(context))
 
-    if "s_flag" not in known_flags and "g_flag" in known_flags:
-        s_choices = get_s_info_dict(g_flag=int(request.GET["g_flag"]))
+    if "s_flag" not in request_get.keys() and "g_flag" in request_get.keys():
+        s_choices = get_s_info_dict(g_flag=int(request_get["g_flag"]))
         single_choice = []
         for s_flag, values in s_choices.items():
             if values["type"] == "info":
@@ -95,13 +96,14 @@ def builder(request):
                                             "single_choice" : single_choice, 
                                             "description" : description, 
                                             "flag_name" : "s_flag", 
-                                            "get_dict" : request.GET.items()
+                                            "get_dict" : request_get.items(),
+                                            "request_get" : request_get,
                                             })
         return HttpResponse(template.render(context))
 
 
-    if "c_flag" not in known_flags and "g_flag" in known_flags:
-        c_choices = get_c_info_dict(g_flag=int(request.GET["g_flag"]))
+    if "c_flag" not in request_get.keys() and "g_flag" in request_get.keys():
+        c_choices = get_c_info_dict(g_flag=int(request_get["g_flag"]))
         single_choice = []
         for flag, values in c_choices.items():
             if values["type"] == "info":
@@ -112,12 +114,13 @@ def builder(request):
                                             "single_choice" : single_choice, 
                                             "description" : description, 
                                             "flag_name" : "c_flag", 
-                                            "get_dict" : request.GET.items()
+                                            "get_dict" : request_get.items(),
+                                            "request_get" : request_get,
                                             })
         return HttpResponse(template.render(context))
 
-    if "d_flag" not in known_flags and "c_flag" in known_flags and "g_flag" in known_flags and "s_flag" in known_flags:
-        d_choices = get_d_info_dict(g_flag=int(request.GET["g_flag"]), c_flag=int(request.GET["c_flag"]), s_flag=int(request.GET["s_flag"]))
+    if "d_flag" not in request_get.keys() and "c_flag" in request_get.keys() and "g_flag" in request_get.keys() and "s_flag" in request_get.keys():
+        d_choices = get_d_info_dict(g_flag=int(request_get["g_flag"]), c_flag=int(request_get["c_flag"]), s_flag=int(request_get["s_flag"]))
         single_choice = []
         for flag, values in d_choices.items():
             if values["type"] == "info":
@@ -128,12 +131,13 @@ def builder(request):
                                             "single_choice" : single_choice, 
                                             "description" : description, 
                                             "flag_name" : "d_flag", 
-                                            "get_dict" : request.GET.items()
+                                            "get_dict" : request_get.items(),
+                                            "request_get" : request_get,
                                             })
         return HttpResponse(template.render(context))
 
-    if "t_flag" not in known_flags and "c_flag" in known_flags and "g_flag" in known_flags:
-        if request.GET["g_flag"] == "6" :
+    if "t_flag" not in request_get.keys() and "c_flag" in request_get.keys() and "g_flag" in request_get.keys():
+        if request_get["g_flag"] == "6" :
             single_choice = [
                 {"meaning" : "Events are produced for both beams", "name" : "0"},
                 {"meaning" : "Events are produced for beam 1 (traveling from VeLo to Muon system)", "name" : "1"},
@@ -144,46 +148,60 @@ def builder(request):
                                             "single_choice" : single_choice, 
                                             "description" : "Choose which of the following choices applies to your decay.", 
                                             "flag_name" : "t_flag", 
-                                            "get_dict" : request.GET.items()
+                                            "get_dict" : request_get.items(),
+                                            "request_get" : request_get,
                                             })
             return HttpResponse(template.render(context))
             
-        elif request.GET["g_flag"] == "5": 
-                if request.GET["c_flag"] == "0":
+        elif request_get["g_flag"] == "5": 
+                if request_get["c_flag"] == "0":
                     template = loader.get_template('builder/get_four_momentum.html') #gives the last 4 digits -> afterwards we are done
                     # get the four-digit value of the momentum of the particle (The momentum is given in GeV,rounded up)
-                    context = RequestContext(request, {"get_dict" : request.GET.items()})
+                    context = RequestContext(request, {
+                                                        "get_dict" : request_get.items(),
+                                                        "request_get" : request_get
+                                                    })
                     return HttpResponse(template.render(context))
 
-                elif request.GET["c_flag"] == "1":
+                elif request_get["c_flag"] == "1":
                     template = loader.get_template('builder/get_eta_range.html') #gives the last 4 digits -> afterwards we are done
-                    context = RequestContext(request, {"get_dict" : request.GET.items()})
+                    context = RequestContext(request, {
+                                                "get_dict" : request_get.items(),
+                                                "request_get" : request_get
+                                            })
                     return HttpResponse(template.render(context))
-                elif c_flag in [2,3]:
+                elif request_get["c_flag"] in ["2","3"]:
                     # "flag must be zero"
-                    request.GET["c_flag"] = "0"
+                    request_get["t_flag"] = "0"
+                    request_get["n_flag"] = "0"
                 else:
                     pass # the flag is not defined
         else:
             template = loader.get_template('builder/get_number_charged_particles.html')
-            context = RequestContext(request, {"get_dict" : request.GET.items()})
+            context = RequestContext(request, {
+                                        "get_dict" : request_get.items(),
+                                        "request_get" : request_get
+                                    })
             return HttpResponse(template.render(context))
-    if "n_flag" not in known_flags and  "g_flag" in known_flags  and "c_flag" in known_flags and "s_flag" in known_flags:
-        if request.GET["g_flag"] == "6" and request.GET["c_flag"] in [0,1]:  
+    if "n_flag" not in request_get.keys() and  "g_flag" in request_get.keys()  and "c_flag" in request_get.keys() and "s_flag" in request_get.keys():
+        if request_get["g_flag"] == "6" and request_get["c_flag"] in ["0","1"]:  
             template = loader.get_template('builder/get_gas_type.html') 
             #gives the last 4 digits, afterwards we are done
-            context = RequestContext(request, {"get_dict" : request.GET.items()})
+            context = RequestContext(request, {"get_dict" : request_get.items()})
             return HttpResponse(template.render(context))
-        elif request.GET["g_flag"] == "5" and request.GET["c_flag"] in [2,3]:
-            request.GET["n_flag"] = "0"
+        elif request_get["g_flag"] == "5" and request_get["c_flag"] in [2,3]:
+            request_get["n_flag"] = "0"
         else:
             template = loader.get_template('builder/get_neutral_decays.html')
-            context = RequestContext(request, {"get_dict" : request.GET.items()})
+            context = RequestContext(request, {
+                                            "get_dict" : request_get.items(),
+                                            "request_get" : request_get
+                                            })
             return HttpResponse(template.render(context))
 
-    if "x_flag" not in known_flags and "g_flag" in known_flags and "s_flag" in known_flags and "n_flag" in known_flags and "t_flag" in known_flags:
-        if not (request.GET["g_flag"] == "5" and (request.GET["t_flag"] != "0" or request.GET["n_flag"] != "0")):
-            x_choices = get_x_info_dict(g_flag=int(request.GET["g_flag"]), s_flag=int(request.GET["s_flag"]))
+    if "x_flag" not in request_get.keys() and "g_flag" in request_get.keys() and "s_flag" in request_get.keys() and "n_flag" in request_get.keys() and "t_flag" in request_get.keys():
+        if not (request_get["g_flag"] == "5" and (request_get["t_flag"] != "0" or request_get["n_flag"] != "0")):
+            x_choices = get_x_info_dict(g_flag=int(request_get["g_flag"]), s_flag=int(request_get["s_flag"]))
             if x_choices:
                 single_choice = []
                 for flag, values in x_choices.items():
@@ -194,8 +212,11 @@ def builder(request):
                                                     "single_choice" : single_choice, 
                                                     "description" : "Choose which of the following choices applies to your decay.", 
                                                     "flag_name" : "x_flag", 
-                                                    "get_dict" : request.GET.items()
+                                                    "get_dict" : request_get.items(),
+                                                    "request_get" : request_get,
                                                     })
                 return HttpResponse(template.render(context))            
-    return render(request, "builder/end.html")
+    template = loader.get_template('builder/end.html')
+    context = RequestContext(request, {"request_get" : request_get})
+    return HttpResponse(template.render(context))
 
