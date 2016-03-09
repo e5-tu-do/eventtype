@@ -89,7 +89,7 @@ def get_s_info_dict(g_flag):
     return s_dict
 
 def get_s_info(s_flag, g_flag):
-    s_dict = get_s_info_dict(s_flag)
+    s_dict = get_s_info_dict(g_flag)
     if s_flag not in s_dict.keys():
         return { "meaning" : "no fitting g flag", "type" : "error"}
     else:
