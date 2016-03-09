@@ -1,0 +1,46 @@
+\{% extends "builder/builder.html" %}
+
+{% block question %}
+        
+        <p class="lead"> Enter the atomic number Z of the target gas.</p> 
+
+
+
+        <form id="momentum_form">
+        	<div class="input-group">
+	            <span class="input-group-addon">Atomic number</span>
+                <input type="number" class="form-control" id="numatoms"  step=1 max=999 placeholder="max 3 digits"  title="Integer between 0 and 999.">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </span>
+            </div>
+                {% for keyval in get_dict %}
+                    <input type="hidden" name="{{keyval.0}}" value="{{keyval.1}}">  
+                    <input type="hidden" name="n_flag" value="?">
+                    <input type="hidden" name="x_flag" value="?">
+                    <input type="hidden" name="u_flag" value="?">
+                {% endfor %}
+        </form>
+
+      
+{% endblock %}
+
+
+
+{% block end %}
+    <script>
+        $(function() {
+            $("form").submit(function() {
+                var numatoms = parseInt($("#numatoms").val(), 10);
+                var n_flag = Math.floor( numatoms / 100 );
+                var x_flag = Math.floor( (numatoms%100) / 10 );
+                var u_flag = Math.floor( numatoms%10 );
+
+                $("input[name='n_flag']").val(n_flag);
+                $("input[name='x_flag']").val(x_flag);
+                $("input[name='u_flag']").val(u_flag);
+
+            });
+        });
+    </script>
+{% endblock %}

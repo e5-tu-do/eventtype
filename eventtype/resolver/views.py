@@ -186,9 +186,12 @@ def builder(request):
     if "n_flag" not in request_get.keys() and  "g_flag" in request_get.keys()  and "c_flag" in request_get.keys() and "s_flag" in request_get.keys():
         if request_get["g_flag"] == "6" and request_get["c_flag"] in ["0","1"]:  
             template = loader.get_template('builder/get_gas_type.html') 
-            #gives the last 4 digits, afterwards we are done
-            context = RequestContext(request, {"get_dict" : request_get.items()})
+            context = RequestContext(request, { 
+                                                    "get_dict" : request_get.items(),
+                                                    "request_get" : request_get
+                                                })
             return HttpResponse(template.render(context))
+            
         elif request_get["g_flag"] == "5" and request_get["c_flag"] in [2,3]:
             request_get["n_flag"] = "0"
         else:

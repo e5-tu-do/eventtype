@@ -42,14 +42,14 @@ def get_s_info_dict(g_flag):
 
     elif g_flag == 3:
         s_dict[0] = { "meaning" : "no requirement", "type" : "info"}
-        s_dict[1] = { "meaning" : "a τ + or τ − is required (See [2] for more details)", "type" : "info"}
-        s_dict[2] = { "meaning" : "a Σ + or Σ − is required", "type" : "info"}
-        s_dict[3] = { "meaning" : "a Λ or Λ̄ is required", "type" : "info"}
-        s_dict[4] = { "meaning" : "a K S 0 is required", "type" : "info"}
-        s_dict[5] = { "meaning" : "a Ω − or Ω + is required", "type" : "info"}
+        s_dict[1] = { "meaning" : "a $\\tau^+$ + or $\\tau^-$ is required. (See LHCb Note 2009-001 for more details)", "type" : "info"}
+        s_dict[2] = { "meaning" : "a $\Sigma^+$ or $\Sigma^-$ is required", "type" : "info"}
+        s_dict[3] = { "meaning" : "a $\Lambda$ or $\\bar{\Lambda}$ is required", "type" : "info"}
+        s_dict[4] = { "meaning" : "a $K_S^0$ is required", "type" : "info"}
+        s_dict[5] = { "meaning" : "an $\Omega^-$ or $\Omega^+$ is required", "type" : "info"}
         s_dict[6] = { "meaning" : "a Ξ − or Ξ + is required", "type" : "info"}
-        s_dict[7] = { "meaning" : "a K − or K + is required", "type" : "info"}
-        s_dict[8] = { "meaning" : "a K L 0 is required", "type" : "info"}
+        s_dict[7] = { "meaning" : "a $K^-$ or $K^+$ is required", "type" : "info"}
+        s_dict[8] = { "meaning" : "a $K_L^0$ is required", "type" : "info"}
         s_dict[9] = { "meaning" : "reserve", "type" : "error"}
 
     elif g_flag == 4:
@@ -77,8 +77,8 @@ def get_s_info_dict(g_flag):
         s_dict[9] = { "meaning" : "other particle type", "type" : "info" }
     elif g_flag == 6:
         s_dict[0] = { "meaning" : "no particular type of particle generated (i.e. all available types)", "type" : "info"}
-        s_dict[1]
-        s_dict[2] = { "meaning" : "μ ± only generated", "type" : "info"}
+        s_dict[1] = { "meaning" : "reserve", "type" : "error"}
+        s_dict[2] = { "meaning" : "$\mu^{\pm}$ only generated", "type" : "info"}
         s_dict[3] = { "meaning" : "reserve", "type" : "error"}
         s_dict[4] = { "meaning" : "reserve", "type" : "error"}
         s_dict[5] = { "meaning" : "reserve", "type" : "error"}
