@@ -172,19 +172,19 @@ def get_c_info_dict(g_flag):
         # signatures (fully hadronic modes, and modes with muons or electrons). Given the signal particle
         # is flagged elsewhere, the charm content of the signal particle does not trigger the charm-and-
         # lepton flag (Such as D ∗ and Jpsi signal particles).
-        c_dict[0] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: 0 , electron : 0", "type" : "info"}
-        c_dict[1] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: at least 1", "type" : "info"}
-        c_dict[2] = {"meaning" : "cc- meson: 0, open-charm hadron: 0, muon: 0 , electron : at least 1", "type" : "info"}
+        c_dict[0] = {"meaning" : "no $c\\bar{c}$ meson, no open-charm hadron, no muon no electron", "type" : "info"}
+        c_dict[1] = {"meaning" : "no $c\\bar{c}$ meson, no open-charm hadron, at least 1 muon", "type" : "info"}
+        c_dict[2] = {"meaning" : "no $c\\bar{c}$ meson, no open-charm hadron, no muon , electron : at least 1", "type" : "info"}
 
-        c_dict[3] = {"meaning" : "cc- meson: at least 1, open-charm hadron: 0, muon: 0 , electron : 0", "type" : "info"}
-        c_dict[4] = {"meaning" : "cc- meson: at least 1, open-charm hadron: 0, muon: at least 1", "type" : "info"}
-        c_dict[5] = {"meaning" : "cc- meson: at least 1, open-charm hadron: 0, muon: 0 , electron : at least 1", "type" : "info"}
+        c_dict[3] = {"meaning" : "at least 1 $c\\bar{c}$ meson, no open-charm hadron, no muon , no electron", "type" : "info"}
+        c_dict[4] = {"meaning" : "at least 1 $c\\bar{c}$ meson, no open-charm hadron, at least 1 muon", "type" : "info"}
+        c_dict[5] = {"meaning" : "at least 1 $c\\bar{c}$ meson, no open-charm hadron, no muon , at least 1 electron ", "type" : "info"}
 
-        c_dict[6] = {"meaning" : "open-charm hadron: 1, muon: 0 , electron : 0", "type" : "info"}
-        c_dict[7] = {"meaning" : "open-charm hadron: at least 1, muon: at least 1", "type" : "info"}
-        c_dict[8] = {"meaning" : "open-charm hadron: at least 1, muon: 0 , electron : at least 1", "type" : "info"}
+        c_dict[6] = {"meaning" : "one open-charm hadron, no muon, no electron", "type" : "info"}
+        c_dict[7] = {"meaning" : "at least one open-charm hadron, at least 1 muon", "type" : "info"}
+        c_dict[8] = {"meaning" : "at least one open-charm hadron, no muon, at least 1 electron", "type" : "info"}
 
-        c_dict[9] = {"meaning" : "open-charm hadron: at least 2, muon: 0 , electron : 0", "type" : "info"}
+        c_dict[9] = {"meaning" : "at least 2 open-charm hadrons, no muon, no electron", "type" : "info"}
 
     elif g_flag == 5:
         c_dict[0] =  {"meaning" : "fixed momentum (specified in other flags) in calo acceptance", "type" : "info"}
