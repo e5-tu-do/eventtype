@@ -125,16 +125,20 @@ def builder(request):
         for flag, values in d_choices.items():
             if values["type"] == "info":
                 single_choice.append({"name" : flag, "meaning" : values["meaning"]})
-        description = "Choose which of the following choices applies to your decay."
-        template = loader.get_template('builder/single_choice.html')
-        context = RequestContext(request, {
-                                            "single_choice" : single_choice, 
-                                            "description" : description, 
-                                            "flag_name" : "d_flag", 
-                                            "get_dict" : request_get.items(),
-                                            "request_get" : request_get,
-                                            })
-        return HttpResponse(template.render(context))
+        #shortcut if there is only one option
+        if len(single_choice) == 1: 
+            request_get["d_flag"] = single_choice[0]["name"]
+        else:
+            description = "Choose which of the following choices applies to your decay."
+            template = loader.get_template('builder/single_choice.html')
+            context = RequestContext(request, {
+                                                "single_choice" : single_choice, 
+                                                "description" : description, 
+                                                "flag_name" : "d_flag", 
+                                                "get_dict" : request_get.items(),
+                                                "request_get" : request_get,
+                                                })
+            return HttpResponse(template.render(context))
 
     if "t_flag" not in request_get.keys() and "c_flag" in request_get.keys() and "g_flag" in request_get.keys():
         if request_get["g_flag"] == "6" :
