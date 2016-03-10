@@ -58,7 +58,7 @@
                 </ul>
                 <form class="navbar-form navbar-right" action="https://github.com/KonstantinSchubert/eventtype/issues/new">
                     <button type="submit" class="btn btn-danger">Report a bug</button>
-                    <input type="hidden" name="body" value="">
+                    <input type="hidden" name="body" id="gitbodyinput" value="">
                 </form>
 
             </div>
@@ -96,7 +96,13 @@
                   {left: "$$", right: "$$", display: true},
                   {left: "$", right: "$", display: false},
               ]
-          }); </script>
+          }); 
+    </script>
+    <script> 
+        $(function() {
+            $("#gitbodyinput").val("Issue with url: " + $(location).attr('href') + "\n" + "\n");
+        });
+    </script>
     
     {% block end %}
     {% endblock %}

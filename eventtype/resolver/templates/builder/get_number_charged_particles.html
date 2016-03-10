@@ -9,7 +9,7 @@ enter 9. The value 0 is possible.</p>
 
 
         <form id="charged_tracks_form">
-            <input type="number" name="t_flag" step=1 max=9>
+            <input type="number" name="t_flag" step=1 max=9 min=0>
             {% for keyval in get_dict %}
                 <input type="hidden" name="{{keyval.0}}" value="{{keyval.1}}">
             {% endfor %}
