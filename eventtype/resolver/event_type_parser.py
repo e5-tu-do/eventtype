@@ -231,6 +231,7 @@ def get_t_info(t_flag, g_flag, c_flag):
     # the track flag may become ambiguous. In that case, tracks should be counted using the dominant
     # or more representative forced decay chain.
     if g_flag == 6 :
+        t_dict = {}
         t_dict[0] = {"meaning" : "both beams", "type" : "info"}
         t_dict[1] = {"meaning" : "beam 1 (traveling from VeLo to Muon system)", "type" : "info"}
         t_dict[2] = {"meaning" : "beam 2 (traveling from Muon system to VeLo)", "type" : "info"}
@@ -241,6 +242,7 @@ def get_t_info(t_flag, g_flag, c_flag):
         t_dict[7] =  {"meaning" : "reserve", "type" : "error"}
         t_dict[8] =  {"meaning" : "reserve", "type" : "error"}
         t_dict[9] =  {"meaning" : "reserve", "type" : "error"}
+	return t_dict[t_flag]
     elif g_flag == 5: 
             if c_flag == 0:
                 return {"meaning" : "first digit of the four-digit value of the momentum of the particle (The momentum is given in GeV,rounded up)", "type" : "info"}
@@ -255,6 +257,8 @@ def get_t_info(t_flag, g_flag, c_flag):
             return {"meaning" : str(t_flag) + " “stable” charged particles in the forced part of the decay chain(s) of the selected particle(s)", "type" : "info"}
         else:
             return {"meaning" : "At least 9  “stable” charged particles in the forced part of the decay chain(s) of the selected particle(s)", "type" : "info"}
+
+
 
 def get_n_info(n_flag, g_flag, c_flag, s_flag):
     # The neutral flag indicated the presence of certain neutral particles in the forced part of the decay
