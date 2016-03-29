@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def get_g_info(g_flag):
     g_dict = {}
     g_dict[0] = { "meaning" : "(illegal value)", type : "error"} 
