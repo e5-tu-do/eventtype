@@ -25,42 +25,59 @@
                 </span>
             </div>
         </form>
-
+    
     {%if has_event_number %}
         <h2> Event number explanation: </h2>
         <table id="event_type_explained">
-            <tr>
-                <td>{{ g.flag}}</td>
-                <td>{{ g.meaning }}</td>
-            </tr>
-            <tr>
-                <td>{{ s.flag}}</td>
-                <td>{{ s.meaning }}</td>
-            </tr>
-            <tr>
-                <td>{{ d.flag}}</td>
-                <td>{{ d.meaning }}</td>
-            </tr>
-            <tr>
-                <td>{{ c.flag}}</td>
-                <td>{{ c.meaning }}</td>
-            </tr>
-            <tr>
-                <td>{{ t.flag}}</td>
-                <td>{{ t.meaning }}</td>
-            </tr>
-            <tr>
-                <td>{{ n.flag}}</td>
-                <td>{{ n.meaning }}</td>
-            </tr>
-            <tr>
-                <td>{{ x.flag}}</td>
-                <td>{{ x.meaning }}</td>
-            </tr>
-            <tr>
-                <td>{{ u.flag}}</td>
-                <td>{{ u.meaning }}</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Flag name</th>
+                    <th>Value</th>
+                    <th>Explanation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td >general flag</td>
+                    <td>{{ g.flag}}</td>
+                    <td>{{ g.meaning }}</td>
+                </tr>
+                <tr>
+                    <td>selection flag</td>
+                    <td>{{ s.flag}}</td>
+                    <td>{{ s.meaning }}</td>
+                </tr>
+                <tr>
+                    <td>decay flag</td>
+                    <td>{{ d.flag}}</td>
+                    <td>{{ d.meaning }}</td>
+                </tr>
+                <tr>
+                    <td>charm/lepton content flag</td>
+                    <td>{{ c.flag}}</td>
+                    <td>{{ c.meaning }}</td>
+                </tr>
+                <tr>
+                    <td>track flag</td>
+                    <td>{{ t.flag}}</td>
+                    <td>{{ t.meaning }}</td>
+                </tr>
+                <tr>
+                    <td>neutral decay flag</td>
+                    <td>{{ n.flag}}</td>
+                    <td>{{ n.meaning }}</td>
+                </tr>
+                <tr>
+                    <td>extra flag</td>
+                    <td>{{ x.flag}}</td>
+                    <td>{{ x.meaning }}</td>
+                </tr>
+                <tr>
+                    <td>user flag</td>
+                    <td>{{ u.flag}}</td>
+                    <td>{{ u.meaning }}</td>
+                </tr>
+            <tbody/>
         </table>
         <p class="lead">  <a href="http://lhcb-release-area.web.cern.ch/LHCb-release-area/DOC/decfiles/">List of all existing LHCb DECFILES with corresponding event type.</a> </p>
     {% endif %}

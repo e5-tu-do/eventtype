@@ -53,11 +53,17 @@ label{
 	align: left;
 }
 
-table td, table td * {
+table td, table th, table th *, table td * {
     vertical-align: top;
     text-align: left;
 }
 
+table thead th { border-bottom: 1px solid #000; }
+
 td {
+	padding: 0.5em 1em;
+}
+
+th, td {
 	padding: 0.5em 1em;
 }
