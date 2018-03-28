@@ -4,12 +4,11 @@ export PYTHONPATH=${PYTHONPATH}:/eventtype/eventtype/
 
 git clone https://github.com/e5-tu-do/eventtype.git
 
-python eventtype/eventtype/manage.py migrate 
-# python eventtype/eventtype/manage.py runserver
+cd eventtype
+git checkout dev
 
-echo $(ls -l)
-RUN cd eventtype
-echo $(ls -l)
+python eventtype/manage.py migrate 
+# python eventtype/eventtype/manage.py runserver
 
 
 echo Starting Gunicorn.
