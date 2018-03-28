@@ -3,11 +3,12 @@
 export PYTHONPATH=${PYTHONPATH}:/eventtype/eventtype/
 
 git clone https://github.com/e5-tu-do/eventtype.git
-# cd eventtype
+cd eventtype
+
 # git checkout dev
 
-python eventtype/eventtype/manage.py migrate 
-# python eventtype/eventtype/manage.py runserver
+python eventtype/manage.py migrate 
+
 
 echo Starting Gunicorn.
 exec gunicorn eventtype.wsgi:application \
