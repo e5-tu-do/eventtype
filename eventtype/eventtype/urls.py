@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 import resolver.views
-import settings
+import eventtype.settings
 
 urlpatterns = [
     url(r'^eventtype/admin/', admin.site.urls),
