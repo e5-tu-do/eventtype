@@ -55,18 +55,16 @@ MIDDLEWARE_CLASSES = [
 ROOT_URLCONF = 'eventtype.urls'
 
 
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.functional import SimpleLazyObject
+def baseurl(request):
+    """
+    Return a BASE_URL template context for the current request.
+    """
+    if request.is_secure():
+        scheme = 'https://'
+    else:
+        scheme = 'http://'
 
-
-def site(request):
-    site = SimpleLazyObject(lambda: get_current_site(request))
-    protocol = 'https' if request.is_secure() else 'http'
-
-    return {
-        'site': site,
-        'site_root': SimpleLazyObject(lambda: "{0}://{1}".format(protocol, site.domain)),
-    }
+    return {'BASE_URL': scheme + request.get_host(), }
 
 
 TEMPLATES = [
@@ -80,7 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'eventtype.settings.site'
+                'eventtype.settings.baseurl'
             ],
         },
     },
@@ -146,15 +144,15 @@ STATIC_URL = 'eventtype/'
 
 # USE_X_FORWARDED_HOST = True
 # FORCE_SCRIPT_NAME = '/eventtype'
-# 
+#
 # STATIC_SUFFIX = '/static/'
 # STATIC_URL = FORCE_SCRIPT_NAME + STATIC_SUFFIX
 # MEDIA_SUFFIX = '/media/'
 # MEDIA_URL = FORCE_SCRIPT_NAME + MEDIA_SUFFIX
-# 
-# 
+#
+#
 # STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-# 
+#
 # TEMPLATES = [
 #     {
 #         'BACKEND': 'django.template.backends.django.DjangoTemplates',
