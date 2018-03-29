@@ -143,6 +143,7 @@ USE_TZ = True
 
 # STATIC_URL = 'http://static.boosted.science/eventtype/'
 STATIC_URL = 'eventtype/'
+SITE_URL = 'http://cloud.e5.physik.tu-dortmund.de/eventtype/'
 
 # USE_X_FORWARDED_HOST = True
 # FORCE_SCRIPT_NAME = '/eventtype'
