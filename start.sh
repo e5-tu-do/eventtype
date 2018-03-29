@@ -8,6 +8,7 @@ cd eventtype
 git checkout for_cloud
 
 python eventtype/manage.py migrate 
+python eventtype/manage.py collectstatic
 
 
 echo Starting Gunicorn.

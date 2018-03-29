@@ -15,17 +15,17 @@ Including another URLconf
 """
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 import resolver.views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', resolver.views.index),
-    url(r'^resolve/$', resolver.views.resolve),
-    url(r'^build/$', resolver.views.builder),
-    url(r'^about/$', resolver.views.about),
-]
+    url(r'^eventtype/admin/', admin.site.urls),
+    url(r'^eventtype/$', resolver.views.index),
+    url(r'^eventtype/resolve/$', resolver.views.resolve),
+    url(r'^eventtype/build/$', resolver.views.builder),
+    url(r'^eventtype/about/$', resolver.views.about),
+] + static(settings.STATIC_SUFFIX, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
