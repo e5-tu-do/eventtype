@@ -21,11 +21,11 @@ from django.contrib import admin
 import resolver.views
 
 urlpatterns = [
-    url(r'^eventtype/admin/', admin.site.urls),
-    url(r'^eventtype/$', resolver.views.index),
-    url(r'^eventtype/resolve/$', resolver.views.resolve),
-    url(r'^eventtype/build/$', resolver.views.builder),
-    url(r'^eventtype/about/$', resolver.views.about),
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', resolver.views.index),
+    url(r'^resolve/$', resolver.views.resolve),
+    url(r'^build/$', resolver.views.builder),
+    url(r'^about/$', resolver.views.about),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

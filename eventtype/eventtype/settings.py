@@ -116,7 +116,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_ROOT = '/var/www/static/eventtype/'
+# STATIC_ROOT = '/var/www/static/eventtype/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -126,4 +126,31 @@ STATIC_ROOT = '/var/www/static/eventtype/'
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 # STATIC_URL = 'http://static.boosted.science/eventtype/'
-STATIC_URL = '/static/'
+# STATIC_URL = 'http://cloud.e5.physik.tu-dortmund.de/eventtype/static/'
+
+USE_X_FORWARDED_HOST = True
+FORCE_SCRIPT_NAME = '/eventtype'
+
+STATIC_SUFFIX = '/static/'
+STATIC_URL = FORCE_SCRIPT_NAME + STATIC_SUFFIX
+MEDIA_SUFFIX = '/media/'
+MEDIA_URL = FORCE_SCRIPT_NAME + MEDIA_SUFFIX
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [STATIC_ROOT],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
