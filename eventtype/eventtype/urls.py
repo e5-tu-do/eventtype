@@ -27,6 +27,6 @@ urlpatterns = [
     url(r'^eventtype/resolve/$', resolver.views.resolve),
     url(r'^eventtype/build/$', resolver.views.builder),
     url(r'^eventtype/about/$', resolver.views.about),
-] + static(eventtype.settings.STATIC_SUFFIX, document_root=eventtype.settings.STATIC_ROOT)
+]#  + static(eventtype.settings.STATIC_SUFFIX, document_root=eventtype.settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
