@@ -5,7 +5,7 @@ export PYTHONPATH=${PYTHONPATH}:/eventtype/eventtype/
 git clone https://github.com/e5-tu-do/eventtype.git
 cd eventtype
 
-# git checkout dev
+git checkout for_cloud
 
 python eventtype/manage.py migrate 
 
