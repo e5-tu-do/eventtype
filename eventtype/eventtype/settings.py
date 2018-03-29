@@ -64,7 +64,7 @@ def baseurl(request):
     else:
         scheme = 'http://'
 
-    return {'BASE_URL': scheme + request.get_host() + request.path}
+    return {'BASE_URL': scheme + request.get_host() + request.path[:-1]}
 
 
 TEMPLATES = [
